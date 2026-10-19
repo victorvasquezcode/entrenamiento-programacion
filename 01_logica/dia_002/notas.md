@@ -1,7 +1,7 @@
 # Día 002 — Operadores y expresiones lógicas
 
 **Módulo:** 01 — Lógica de programación  
-**Estado:** 🟢 VERDE
+**Estado:** 🟢 VERDE  
 **Concepto:** Operadores de comparación y operadores lógicos
 
 ---
@@ -235,39 +235,23 @@ En mi primera solución utilicé correctamente `and` y `or`, pero olvidé utiliz
 
 ---
 
-## 5. Evaluación conceptual
+## 5. Control verde
 
-### ¿Cuál es la diferencia entre `=` y `==`?
+### CONTROL 002 — Operadores lógicos
 
-`=` se utiliza para asignar un valor a una variable. `==` compara dos valores y devuelve un booleano.
+edad = 17
+autorizado = True
+suspendido = False
 
-### ¿Por qué `True and False` produce `False`?
+resultado = (
+    (edad >= 18 or autorizado)
+    and not suspendido
+)
 
-Porque `and` requiere que ambas condiciones sean verdaderas.
+print(resultado)
 
-### ¿Por qué `True or False` produce `True`?
-
-Porque `or` requiere que al menos una condición sea verdadera.
-
-### ¿Qué hace `not`?
-
-Invierte un valor booleano: `True` se convierte en `False` y viceversa.
-
-### ¿Por qué utilizar paréntesis?
-
-Para expresar claramente cómo se agrupan las condiciones y evitar interpretaciones equivocadas.
-
-### ¿Qué sucede si cambio el `and` principal por `or`?
-
-Bastaría con cumplir uno de los grupos para permitir el acceso, lo que incumpliría las reglas de seguridad.
-
-### ¿Puede ingresar un administrador suspendido?
-
-No. Estar libre de suspensión es una condición obligatoria para todos.
-
-### ¿Qué ventaja tienen las variables auxiliares?
-
-Permiten organizar reglas complejas, darles nombres significativos y facilitar la comprensión del código.
+True and True = True
+Imprimiria True
 
 ---
 
