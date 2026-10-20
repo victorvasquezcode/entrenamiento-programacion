@@ -17,21 +17,23 @@ Desarrollar pensamiento algorítmico, dominar Python y avanzar progresivamente h
 | 001 | Pensamiento algorítmico | 🟢 Verde | Mutación 001 aprobada |
 | 002 | Operadores lógicos | 🟢 Verde | Mutación 002 aprobada |
 | 003 | Condicionales y control de flujo | 🟢 Verde | Mutación 003 aprobada |
+| 004 | Bucles while y repetición controlada | 🟢 Verde | Mutación 004 aprobada |
 
 ## 🔁 Controles verdes
 
 | Tema | Último control | Resultado |
 |---|---|---|
-| Pensamiento algorítmico | Día 002 | Aprobado |
-| Operadores lógicos | Pendiente | Sin evaluar |
+| Pensamiento algorítmico | Día 001 | Aprobado |
+| Operadores lógicos | Día 002 | Aprobado |
+| Condicionales y control de flujo | Día 003| Aprobado |
 
 ## 📈 Métricas
 
-- Días completados: 2
-- Temas verdes: 2
+- Días completados: 3
+- Temas verdes: 3
 - Temas amarillos: 0
 - Temas rojos en estudio: 0
-- Mutaciones aprobadas: 2
+- Mutaciones aprobadas: 3
 
 ## 🎯 Próximo objetivo
 

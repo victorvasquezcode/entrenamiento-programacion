@@ -2,54 +2,21 @@
 
 **Módulo:** 01 — Lógica de programación  
 **Estado:** 🟢 VERDE  
-**Concepto:** Estructuras condicionales `if`, `elif` y `else`, orden de evaluación, rangos y simplificación de condiciones.
+**Concepto:** `if`, `elif`, `else`, rangos, orden de evaluación y simplificación de condiciones.
 
 ---
 
 ## 1. Concepto aprendido
 
-Las estructuras condicionales permiten que un programa tome decisiones dependiendo de si una condición es verdadera o falsa.
+Las estructuras condicionales permiten ejecutar distintos bloques de código según una condición:
 
-En Python existen tres instrucciones principales:
+- `if`: comprueba la primera condición.
+- `elif`: comprueba otra condición solo si las anteriores fueron falsas.
+- `else`: se ejecuta si ninguna condición anterior fue verdadera.
 
-- **`if`:** Evalúa una condición y ejecuta su bloque si es verdadera.
-- **`elif`:** Evalúa una condición adicional solamente cuando las condiciones anteriores fueron falsas.
-- **`else`:** Ejecuta su bloque cuando ninguna condición anterior se cumple.
+En una cadena `if / elif / else`, **solo se ejecuta la primera rama cuya condición sea verdadera**. En cambio, varios `if` independientes pueden ejecutar más de un bloque.
 
-### Diferencia entre `if` independientes y `if/elif/else`
-
-Cuando utilizamos varios `if` independientes, Python evalúa cada condición por separado y puede ejecutar varios bloques.
-
-En una cadena `if/elif/else`, Python evalúa las condiciones de arriba hacia abajo y ejecuta únicamente el primer bloque cuya condición sea verdadera.
-
-### Importancia del orden
-
-El orden de las condiciones debe responder a la lógica del problema, no a su complejidad.
-
-Si una condición general aparece antes de otra más específica, puede impedir que la segunda se ejecute.
-
-### Simplificación de condiciones
-
-En una cadena `if/elif/else`, cada condición falsa descarta un conjunto de valores.
-
-Por ejemplo:
-
-```python
-if temperatura < -50:
-    estado = "Lectura inválida"
-elif temperatura < 0:
-    estado = "Congelación"
-```
-
-Cuando Python llega al `elif`, ya sabe que `temperatura >= -50`, porque la primera condición fue falsa.
-
-Por eso, no es necesario escribir:
-
-```python
-elif -50 <= temperatura < 0:
-```
-
-**Aprendizaje principal:** Las condiciones anteriores permiten simplificar las siguientes, siempre que estén correctamente ordenadas.
+El orden de las condiciones depende de la lógica del problema, no de su complejidad. Además, cada condición falsa descarta valores, lo que permite simplificar las siguientes. Por ejemplo, después de comprobar `temperatura < -50`, un `elif temperatura < 0` ya implica que la temperatura es al menos -50.
 
 ---
 
@@ -59,7 +26,7 @@ elif -50 <= temperatura < 0:
 
 ### Problema
 
-Solicitar una nota numérica y clasificarla según el rango correspondiente.
+Solicitar una nota decimal y clasificarla según su rango.
 
 ### Entrada
 
@@ -67,11 +34,11 @@ Solicitar una nota numérica y clasificarla según el rango correspondiente.
 
 ### Proceso
 
-1. Si la nota está entre 0 y menos de 11, clasificar como `Desaprobado`.
-2. Si está entre 11 y menos de 14, clasificar como `Regular`.
-3. Si está entre 14 y menos de 18, clasificar como `Bueno`.
-4. Si está entre 18 y 20, clasificar como `Excelente`.
-5. Si está fuera de 0 a 20, clasificar como `Nota inválida`.
+1. De 0 a menos de 11: `Desaprobado`.
+2. De 11 a menos de 14: `Regular`.
+3. De 14 a menos de 18: `Bueno`.
+4. De 18 a 20: `Excelente`.
+5. Fuera del rango de 0 a 20: `Nota invalida`.
 
 ### Condiciones utilizadas
 
@@ -82,34 +49,46 @@ Solicitar una nota numérica y clasificarla según el rango correspondiente.
 18 <= nota <= 20
 ```
 
+### Código desarrollado
+
+```python
+nota = float(input("Ingrese la nota: "))
+
+if 0 <= nota < 11:
+    print("Desaprobado")
+elif 11 <= nota < 14:
+    print("Regular")
+elif 14 <= nota < 18:
+    print("Bueno")
+elif 18 <= nota <= 20:
+    print("Excelente")
+else:
+    print("Nota invalida")
+```
+
 ### Salida
 
-Una de las siguientes clasificaciones:
-
-- Desaprobado
-- Regular
-- Bueno
-- Excelente
-- Nota inválida
+Una clasificación: `Desaprobado`, `Regular`, `Bueno`, `Excelente` o `Nota invalida`.
 
 ### Casos de prueba
 
 | Nota | Resultado esperado |
-|---|---|
+|---:|---|
 | 8 | Desaprobado |
 | 12 | Regular |
 | 16 | Bueno |
 | 19 | Excelente |
-| -1 | Nota inválida |
-| 21 | Nota inválida |
+| -1 | Nota invalida |
+| 21 | Nota invalida |
 
 ### Aprendizajes
 
-- Aprendí a utilizar `if`, `elif` y `else` para clasificar valores numéricos.
-- Comprendí cómo definir rangos con operadores de comparación.
-- Aprendí que una cadena condicional ejecuta únicamente la primera rama verdadera.
-- Identifiqué que algunas comparaciones pueden simplificarse aprovechando las condiciones anteriores.
-- Comprendí la importancia de comprobar valores límite y entradas fuera del rango permitido.
+- Puedo clasificar números usando rangos y operadores de comparación.
+- Una cadena condicional ejecuta solo la primera rama verdadera.
+- Conviene probar valores límite y valores fuera del rango permitido.
+- Algunas comparaciones son redundantes si las condiciones previas ya descartaron esos valores.
+
+**Evaluación:** Aprobado.
 
 ---
 
@@ -119,7 +98,7 @@ Una de las siguientes clasificaciones:
 
 ### Problema
 
-Calcular la tarifa total de un estacionamiento según la cantidad de horas utilizadas.
+Determinar la tarifa fija de un estacionamiento según las horas utilizadas.
 
 ### Entrada
 
@@ -127,11 +106,11 @@ Calcular la tarifa total de un estacionamiento según la cantidad de horas utili
 
 ### Proceso
 
-1. Entre 1 y 2 horas: tarifa de S/ 5.
-2. Entre 3 y 5 horas: tarifa de S/ 10.
-3. Entre 6 y 10 horas: tarifa de S/ 20.
-4. Más de 10 horas: tarifa de S/ 30.
-5. Cero horas o valores negativos: mostrar `Error`.
+1. De 1 a 2 horas: S/ 5.
+2. De 3 a 5 horas: S/ 10.
+3. De 6 a 10 horas: S/ 20.
+4. Más de 10 horas: S/ 30.
+5. Cero o menos horas: `Error`.
 
 ### Condiciones utilizadas
 
@@ -143,15 +122,37 @@ numero_horas > 10
 numero_horas <= 0
 ```
 
+### Código desarrollado
+
+```python
+numero_horas = int(input("Ingrese el numero de horas de estacionamiento: "))
+
+total = 0
+
+if 1 <= numero_horas <= 2:
+    total += 5
+    print(f"S/{total}")
+elif 3 <= numero_horas <= 5:
+    total += 10
+    print(f"S/{total}")
+elif 6 <= numero_horas <= 10:
+    total += 20
+    print(f"S/{total}")
+elif numero_horas > 10:
+    total += 30
+    print(f"S/{total}")
+elif numero_horas <= 0:
+    print("Error")
+```
+
 ### Salida
 
-- Tarifa total en soles.
-- Mensaje de error para horas no válidas.
+Tarifa en soles o mensaje de error.
 
 ### Casos de prueba
 
 | Horas | Resultado esperado |
-|---|---|
+|---:|---|
 | 0 | Error |
 | 1 | S/ 5 |
 | 2 | S/ 5 |
@@ -163,16 +164,12 @@ numero_horas <= 0
 
 ### Aprendizajes
 
-- Aprendí a resolver un problema de tarifas utilizando una cadena de condiciones.
-- Comprendí que `total += 10` acumula un valor, mientras que `total = 10` realiza una asignación directa.
-- Identifiqué que, para tarifas fijas, es más claro asignar directamente el valor correspondiente.
-- Aprendí que repetir `print()` en varias ramas puede generar código redundante.
-- Comprendí que puedo separar el cálculo de la tarifa de su presentación.
-- Reforcé la importancia de comprobar los límites entre rangos.
+- Una cadena `if / elif / else` permite seleccionar una tarifa según el rango.
+- `total = 10` asigna un valor fijo; `total += 10` acumula sobre el valor anterior.
+- Para tarifas fijas, una asignación directa expresa mejor la intención.
+- Repetir `print()` en cada rama es válido, pero puede simplificarse guardando primero el resultado.
 
-### Oportunidades de mejora
-
-El programa es correcto para las entradas especificadas, pero puede simplificarse mediante asignaciones directas y una única impresión final para los casos válidos.
+**Evaluación:** Aprobado.
 
 ---
 
@@ -182,7 +179,7 @@ El programa es correcto para las entradas especificadas, pero puede simplificars
 
 ### Problema
 
-Una estación meteorológica debe clasificar una temperatura de acuerdo con diferentes rangos.
+Clasificar una temperatura decimal según rangos definidos por una estación meteorológica.
 
 ### Entrada
 
@@ -190,12 +187,12 @@ Una estación meteorológica debe clasificar una temperatura de acuerdo con dife
 
 ### Proceso
 
-1. Menor de -50 °C: `Lectura inválida`.
-2. Desde -50 °C hasta menos de 0 °C: `Congelación`.
-3. Desde 0 °C hasta menos de 15 °C: `Frío`.
-4. Desde 15 °C hasta menos de 30 °C: `Templado`.
-5. Desde 30 °C hasta 60 °C: `Caluroso`.
-6. Mayor de 60 °C: `Lectura inválida`.
+1. Menor de -50 °C: lectura inválida.
+2. Desde -50 °C hasta menos de 0 °C: congelación.
+3. Desde 0 °C hasta menos de 15 °C: frío.
+4. Desde 15 °C hasta menos de 30 °C: templado.
+5. Desde 30 °C hasta 60 °C: caluroso.
+6. Mayor de 60 °C: lectura inválida.
 
 ### Condiciones finales
 
@@ -207,102 +204,119 @@ temperatura < 30
 temperatura <= 60
 ```
 
-### Salida
-
-- Clasificación almacenada en la variable `estado`.
-
 ### Restricciones
 
 - Utilizar `if`, `elif` y `else`.
-- No utilizar condiciones anidadas.
-- Evitar límites inferiores redundantes.
-- Guardar la clasificación en `estado`.
-- Utilizar un único `print()` al final.
+- No anidar condiciones.
+- No repetir límites inferiores ya garantizados por condiciones previas.
+- Guardar el resultado en `estado`.
+- Utilizar un solo `print()` al final.
+
+### Código desarrollado
+
+```python
+temperatura = float(input("Ingrese la temperatura: "))
+
+if temperatura < -50:
+    estado = "Lectura invalida"
+elif temperatura < 0:
+    estado = "Congelacion"
+elif temperatura < 15:
+    estado = "Frio"
+elif temperatura < 30:
+    estado = "Templado"
+elif temperatura <= 60:
+    estado = "Caluroso"
+else:
+    estado = "Lectura invalida"
+
+print(estado)
+```
+
+### Salida
+
+El texto guardado en `estado`.
 
 ### Casos de prueba
 
 | Temperatura | Resultado esperado |
-|---|---|
-| -51 | Lectura inválida |
-| -50 | Congelación |
-| -1 | Congelación |
-| 0 | Frío |
-| 14.9 | Frío |
+|---:|---|
+| -51 | Lectura invalida |
+| -50 | Congelacion |
+| -1 | Congelacion |
+| 0 | Frio |
+| 14.9 | Frio |
 | 15 | Templado |
 | 30 | Caluroso |
 | 60 | Caluroso |
-| 61 | Lectura inválida |
+| 61 | Lectura invalida |
 
 ### Error identificado
 
-En la evaluación conceptual anterior, inicialmente consideré que las condiciones más complicadas debían colocarse primero.
-
-Comprendí que el orden no depende de la complejidad, sino de los rangos y de cómo cada condición descarta valores.
-
-En esta mutación apliqué correctamente ese aprendizaje.
+En la evaluación conceptual inicial pensé que las condiciones más complicadas debían colocarse primero. Corregí ese criterio: **las condiciones se ordenan según los rangos y la lógica del problema**.
 
 ### Aprendizajes
 
-- Aprendí a ordenar condiciones para clasificar rangos sin superposiciones incorrectas.
-- Comprendí que una condición falsa proporciona información para las evaluaciones siguientes.
-- Aprendí a eliminar comparaciones redundantes.
-- Utilicé una variable para almacenar el resultado antes de imprimirlo.
-- Aprendí a separar la lógica de decisión de la presentación del resultado.
-- Comprendí que simplificar código no significa eliminar validaciones necesarias.
+- Una condición falsa reduce el conjunto de valores posibles para las siguientes.
+- Puedo omitir comparaciones redundantes si el orden garantiza el límite inferior.
+- Guardar la clasificación en una variable permite usar un único `print()`.
+- Simplificar condiciones no significa omitir validaciones necesarias.
+
+**Evaluación:** Mutación aprobada. 🟢
 
 ---
 
 ## 5. Control verde — Repaso activo
 
+### Control 001 — Pensamiento algorítmico
 
+**Problema:** Un trabajador gana S/ 12 por hora normal y S/ 18 por cada hora que exceda 40 horas.
+
+- **Entrada:** horas trabajadas.
+- **Proceso:** pagar las primeras 40 horas a S/ 12 y las adicionales a S/ 18.
+- **Salida:** remuneración semanal.
+
+**Caso de 43 horas:** `40 × 12 + 3 × 18 = 480 + 54 = S/ 534`.
+
+**Aprendizaje:** Conviene resolver y explicar el algoritmo antes de programar.
+
+**Estado:** 🟢 Aprobado.
+
+### Control 002 — Operadores lógicos
+
+```python
+edad = 17
+autorizado = True
+suspendido = False
+
+resultado = (
+    (edad >= 18 or autorizado)
+    and not suspendido
+)
+
+print(resultado)
+```
+
+**Razonamiento:** `(False or True) and not False` → `True and True` → `True`.
+
+**Salida:** `True`.
+
+**Estado:** 🟢 Aprobado.
 
 ---
 
 ## 6. Errores y lecciones importantes
 
-### Lección 001 — Orden incorrecto de condiciones
-
-**Aspecto identificado:** Inicialmente consideré que las condiciones más complicadas debían ir primero.
-
-**Corrección:** Las condiciones deben ordenarse según la lógica del problema y los valores que se desean clasificar.
-
-**Regla preventiva:** Antes de escribir una cadena condicional, revisar qué valores acepta cada rama y cuáles descartan las anteriores.
-
-### Lección 002 — Comparaciones redundantes
-
-**Aspecto identificado:** En el clasificador de notas escribí límites inferiores y superiores en cada condición, aunque algunos ya estaban garantizados.
-
-**Corrección:** En la mutación de temperaturas utilicé condiciones más simples, como `elif temperatura < 15`.
-
-**Regla preventiva:** Preguntarme qué valores ya quedaron descartados antes de agregar una comparación.
-
-### Lección 003 — Diferencia entre asignar y acumular
-
-**Aspecto identificado:** En el estacionamiento utilicé `+=` para asignar tarifas fijas.
-
-**Corrección conceptual:**
-
-- `total = 10` asigna directamente el valor 10.
-- `total += 10` suma 10 al valor anterior de `total`.
-
-**Regla preventiva:** Utilizar asignación directa cuando quiero establecer un valor fijo y acumulación cuando necesito sumar al valor existente.
-
-### Lección 004 — Evitar repetición de código
-
-**Aspecto identificado:** En el estacionamiento repetí la instrucción `print()` en diferentes ramas.
-
-**Corrección:** En la mutación almacené la clasificación en `estado` y utilicé un solo `print()` al final.
-
-**Regla preventiva:** Identificar operaciones comunes que pueden realizarse después de la estructura condicional.
+1. **Orden de condiciones:** no colocar primero la condición aparentemente más compleja, sino la que corresponda a la lógica de los rangos.
+2. **Comparaciones redundantes:** revisar qué valores ya fueron descartados antes de escribir el siguiente `elif`.
+3. **Asignación frente a acumulación:** usar `=` para establecer un valor y `+=` cuando deba sumarse al existente.
+4. **Repetición de código:** guardar un resultado y mostrarlo al final puede ser más claro que imprimirlo en cada rama.
 
 ---
 
 ## 7. Reflexión personal
 
-Durante el Día 003 aprendí a utilizar estructuras condicionales para resolver problemas que requieren tomar decisiones según diferentes rangos.
+Aprendí a tomar decisiones con `if`, `elif` y `else`, a organizar correctamente los rangos y a comprender por qué una condición puede simplificarse cuando las anteriores ya descartaron ciertos valores. También reforcé la diferencia entre asignar y acumular, y la importancia de escribir código claro, no solo funcional.
 
-Al principio podía construir condiciones correctas, pero todavía repetía comparaciones y no comprendía completamente cómo influía el orden de evaluación.
-
-Con la mutación de temperaturas entendí que cada condición anterior descarta valores, lo que permite simplificar las siguientes sin perder precisión.
-
-También aprendí a distinguir entre asignar y acumular valores, y a evitar repetir instrucciones cuando puedo almacenar primero un resultado.
+**Resultado final:** Día 003 🟢 VERDE.  
+**Próximo tema:** Día 004 — Bucles `while` y repetición controlada.
