@@ -1,107 +1,52 @@
-# 🐛 Registro de Errores y Aprendizajes
+# Registro de errores y aprendizajes
 
-## Objetivo
+**Objetivo:** identificar fallos de razonamiento y mejorar la calidad de mis soluciones. No registrar errores triviales de escritura salvo que se repitan.
 
-Identificar errores de razonamiento, implementación y validación para evitar repetirlos.
+## Error 001 — Cumplimiento de restricciones (Día 002)
 
----
+- **Situación:** en la primera solución de la mutación de operadores lógicos omití el uso explícito de `not`.
+- **Causa:** comprobé el comportamiento, pero no revisé todos los requisitos.
+- **Corrección:** definí una variable booleana para la suspensión y apliqué `not`.
+- **Regla preventiva:** verificar cada restricción antes de entregar.
+- **Estado:** corregido.
 
-## Error 001 — No cumplir todas las restricciones
+## Lección 002 — Orden de condiciones (Día 003)
 
-**Tema:** Operadores lógicos — Día 002
+- **Situación:** inicialmente pensé que las condiciones más complicadas debían ir primero.
+- **Corrección:** ordenarlas según la lógica de los rangos y recordar que `if/elif/else` ejecuta la primera rama verdadera.
+- **Regla preventiva:** probar límites y detectar condiciones que vuelvan inalcanzables las siguientes.
+- **Estado:** consolidado en la Mutación 003.
 
-**Situación:**
+## Lección 003 — Comparaciones redundantes (Día 003)
 
-En la Mutación 002 debía utilizar `and`, `or` y `not`.
+- **Situación:** en el clasificador de notas repetí límites inferiores que ya quedaban descartados.
+- **Corrección:** en la mutación de temperaturas utilicé `elif temperatura < 0`, `elif temperatura < 15`, etc.
+- **Regla preventiva:** antes de escribir cada `elif`, identificar qué valores ya fueron excluidos.
+- **Estado:** consolidado.
 
-**Error:**
+## Lección 004 — Asignación frente a acumulación (Día 003)
 
-Mi primera solución funcionaba para los casos propuestos, pero olvidé utilizar explícitamente `not`.
+- **Situación:** utilicé `total += 5` para una tarifa fija; funciona si `total` empieza en cero, pero no expresa tan claramente la intención.
+- **Corrección:** utilizar `total = 5` para asignar una tarifa fija; reservar `+=` para acumular.
+- **Regla preventiva:** distinguir entre reemplazar un valor y sumarlo al anterior.
+- **Estado:** comprendido.
 
-**Causa:**
+## Lección 005 — Límites inclusivos en inventario (Día 004)
 
-Me concentré en que el programa funcionara y no comprobé todas las restricciones antes de entregarlo.
+- **Situación:** al explicar la validación de salidas mencioné que el inventario debía ser mayor que la salida.
+- **Corrección:** la condición correcta admite igualdad: `cantidad_producto >= salida`. El código entregado ya utilizaba `>=`.
+- **Regla preventiva:** comprobar casos de igualdad, cero y valores superiores al stock.
+- **Estado:** corregido conceptualmente.
 
-**Corrección:**
+## Aspectos futuros — No son fallos de los ejercicios aprobados
 
-Representé el estado de suspensión mediante una variable booleana y utilicé `not` para negarla.
+- **Entradas no numéricas:** `int()` y `float()` producen `ValueError` ante texto no convertible. Practicar manejo de excepciones cuando corresponda al temario.
+- **Repetición de impresiones:** almacenar el resultado en una variable y mostrarlo una sola vez cuando mejore la claridad.
+- **Pruebas:** distinguir entre resultados esperados y casos efectivamente ejecutados.
 
-**Aprendizaje:**
+## Rutina breve de revisión
 
-Un programa no está completamente terminado solo porque produzca resultados correctos. También debe cumplir las restricciones del problema.
-
-**Regla preventiva:**
-
-Antes de entregar, revisar una lista de requisitos y verificar cada uno.
-
-**Estado:** Corregido.
-
----
-
-## Error 002 — Corregir solamente la salida
-
-**Tema:** Pensamiento algorítmico — Día 001
-
-**Situación:**
-
-En el primer desafío debía impedir que el total de una compra fuera negativo.
-
-**Error:**
-
-Mostré `0` cuando el total era negativo, pero la variable `total` conservaba el valor negativo.
-
-**Causa:**
-
-Me enfoqué en el resultado mostrado en pantalla y no en el valor almacenado.
-
-**Corrección:**
-
-En la mutación siguiente almacené el resultado correcto directamente en la variable `total`.
-
-**Aprendizaje:**
-
-Es importante mantener valores correctos en las variables, no solamente mostrar resultados correctos.
-
-**Regla preventiva:**
-
-Comprobar tanto los resultados impresos como los valores que utiliza el programa.
-
-**Estado:** Corregido.
-
----
-
-## Error 003 — Pruebas insuficientes
-
-**Tema:** Pensamiento algorítmico — Día 001
-
-**Situación:**
-
-Al explicar cómo comprobé mi primer programa, indiqué que lo había ejecutado en la terminal.
-
-**Aspecto por mejorar:**
-
-Ejecutar un programa una vez no demuestra que funcione para todas las entradas relevantes.
-
-**Corrección:**
-
-Comencé a trabajar con casos de prueba que incluyen valores normales, límites y entradas inválidas.
-
-**Aprendizaje:**
-
-Probar significa comparar el resultado obtenido con el resultado esperado.
-
-**Regla preventiva:**
-
-Antes de entregar un ejercicio, comprobar al menos un caso normal, un caso límite y un caso inválido cuando corresponda.
-
-**Estado:** En seguimiento.
-
-**Tema:** Orden de condiciones.
-
-**Aspecto por reforzar:**
-
-El orden de las condiciones debe responder a la lógica de los rangos, no a su complejidad aparente.
-
-**Regla preventiva:** 
-
-Antes de escribir una cadena if/elif, comprobar qué valores quedan descartados después de cada condición.
+1. Elegir una lección sin mirar su corrección.
+2. Explicar qué salió mal y cómo evitarlo.
+3. Crear un caso límite pequeño que demuestre la solución.
+4. Marcar para repaso futuro cualquier concepto que no pueda explicar.

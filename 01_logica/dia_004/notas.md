@@ -64,24 +64,6 @@ while contador <= n:
 
 La expresión `not n <= 0` equivale a `n > 0`.
 
-### Código desarrollado
-
-```python
-while True:
-    n = int(input("Ingrese cuantos numeros se calculara su suma: "))
-    if not n <= 0:
-        break
-
-contador = 1
-suma_numero = 0
-
-while contador <= n:
-    suma_numero += contador
-    contador += 1
-
-print(suma_numero)
-```
-
 ### Salida
 
 La suma de todos los enteros desde 1 hasta `n`.
@@ -144,29 +126,6 @@ if contador > 0:
     ...
 else:
     ...
-```
-
-### Código desarrollado
-
-```python
-suma_total = 0
-contador = 0
-
-while True:
-    importe_ventas = float(input("Ingrese el importe de ventas o 0 si desea terminar el proceso: "))
-    if importe_ventas > 0:
-        contador += 1
-        suma_total += importe_ventas
-    elif importe_ventas == 0:
-        break
-
-if contador > 0:
-    promedio = suma_total / contador
-    print(f"Total vendido: S/. {suma_total}")
-    print(f"Ventas registradas: {contador}")
-    print(f"Promedio por venta: S/. {promedio}")
-else:
-    print("No se registraron ventas")
 ```
 
 ### Salida
@@ -239,62 +198,6 @@ salida > 0
 - Contar solo operaciones exitosas.
 - Acumular las unidades ingresadas y retiradas.
 - Finalizar únicamente mediante la opción 4.
-
-### Código desarrollado
-
-```python
-cantidad_producto = 100
-contador_entrada = 0
-contador_salida = 0
-unidades_ingresadas = 0
-unidades_retiradas = 0
-
-while True:
-    print("===== CONTROL DE INVENTARIO =====")
-    print("1. Registrar entrada")
-    print("2. Registrar salida")
-    print("3. Consultar inventario")
-    print("4. Salir")
-    opcion = input("Ingresar opcion valida (1-4): ")
-
-    if opcion == "1":
-        entrada = int(input("Ingresar nueva entrada al almacen: "))
-        if entrada > 0:
-            cantidad_producto += entrada
-            unidades_ingresadas += entrada
-            contador_entrada += 1
-            print("Cantidad ingresada al almacen")
-        else:
-            print("No se ingreso cantidad porque es cero o negativo")
-
-    elif opcion == "2":
-        salida = int(input("Ingresar salida de almacen: "))
-        if cantidad_producto >= salida:
-            if salida > 0:
-                cantidad_producto -= salida
-                unidades_retiradas += salida
-                contador_salida += 1
-                print("Cantidad retirada del almacen")
-            else:
-                print("No se retiro cantidad porque es cero o negativo")
-        else:
-            print("No hay suficiente cantidad en el almacen")
-
-    elif opcion == "3":
-        print(f"Unidades disponibles: {cantidad_producto}")
-
-    elif opcion == "4":
-        print(f"Inventario final: {cantidad_producto}")
-        print(f"Operaciones de entrada: {contador_entrada}")
-        print(f"Operaciones de salida: {contador_salida}")
-        print(f"Unidades ingresadas: {unidades_ingresadas}")
-        print(f"Unidades retiradas: {unidades_retiradas}")
-        print("¡Hasta luego!")
-        break
-
-    else:
-        print("Opcion invalida")
-```
 
 ### Salida
 
