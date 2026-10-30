@@ -1,0 +1,8 @@
+Lima;22.5
+Cusco;14.0
+Lima;23.5
+Piura;nan
+Lima;abc
+Tacna;19
+registro roto
+Cusco;15.0

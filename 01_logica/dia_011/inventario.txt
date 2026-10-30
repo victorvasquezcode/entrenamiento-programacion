@@ -1,0 +1,10 @@
+P001;Teclado;10;45.50
+P002;Mouse;5;25
+P003;Monitor;3;750
+P001;Teclado;4;45.50
+P004;Cable;abc;12
+P005;USB;8;nan
+P006;Laptop;2;2500
+registro incorrecto
+P007;Hub;0;30
+P008;Soporte;6;40
