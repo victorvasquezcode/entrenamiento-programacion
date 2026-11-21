@@ -89,3 +89,11 @@ La auditoría del commit [`28fc6124`](https://github.com/victorvasquezcode/entre
 | 2026-11-21 | Práctica | Pendiente | Inspección de `practica.py` en `28fc6124`. Falta la implementación, las pruebas y el razonamiento. |
 | 2026-11-21 | Desafío y mutación | Bloqueados | Inspección de ambos archivos en `28fc6124`. Contienen descripciones. Se requiere aprobar la práctica para habilitar el desafío. |
 | 2026-11-21 | Evaluación conceptual | Pendiente | Falta un veredicto para el concepto del Día 018. El repaso acreditó conocimientos previos. |
+
+### Control de retención del 21 de noviembre de 2026
+
+- **Día y etapa** — Día 018, control de retención de temas verdes.
+- **Veredicto** — Aprobado, 3/3, con precisiones de modelado y vocabulario.
+- **Evidencia** — Inspección de las tres respuestas numeradas entregadas en la conversación del 21 de noviembre de 2026. El estudiante obtuvo 0, 3 y 3 unidades, aplicó el veto por suspensión y detectó que la primera condición verdadera absorbe el cero. No se ejecutó código.
+- **Refuerzo** — Distinguir stock inicial de stock actual, modelar credencial y permiso como condiciones independientes, y explicar qué ocurre con negativos cuando se separa el caso cero. Próximo control el 22 de noviembre de 2026 con un problema distinto que integre estas decisiones.
+- **Próxima acción** — Recibir el intento de la práctica `validar_registro(registro)`, las 12 pruebas funcionales, la comprobación de inmutabilidad y la explicación técnica.

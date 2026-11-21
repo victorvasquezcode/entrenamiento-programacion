@@ -8,8 +8,15 @@ Desarrollar dominio sólido de ingeniería de software desde fundamentos hasta C
 
 1. Identificar rama y commit de trabajo en GitHub. Leer [estado actual](memoria/estado_actual.md), [progreso](progreso.md), [errores](errores.md), la ruta en el [README](README.md) y el enunciado vigente.
 2. Contrastar el estado con los veredictos registrados. Si hay conflicto, conservar el último veredicto respaldado, identificar la evidencia faltante y resolverlo antes de desbloquear una etapa.
-3. Iniciar con repaso activo de temas verdes, sin mostrar respuestas antes del intento. Usar los controles con fecha vencida y luego los conceptos pertinentes al día activo. Al volver a una etapa abierta, conservar las aprobaciones registradas para ese día.
+3. Iniciar con repaso activo de temas verdes, sin mostrar respuestas antes del intento. Aplicar la pauta de recuperación espaciada de esta guía y priorizar los controles vencidos. Al volver a una etapa abierta, conservar las aprobaciones registradas para ese día.
 4. Continuar exactamente desde la etapa pendiente y entregar solo el ejercicio habilitado. Organizar la sesión en bloques de 50 minutos con descansos de 10.
+
+## Recuperación espaciada y criterio de ingeniería
+
+- En cada sesión, combinar conocimientos de hace 1, 3, 7 y 14 días, errores recurrentes y un problema que integre varios temas. Consultar las fechas de evaluación y los controles vencidos en `progreso.md` y `errores.md`. Si faltan antecedentes para algún intervalo, usar los temas verdes disponibles y programar el control cuando haya evidencia fechada. Un mismo problema puede cubrir varios intervalos.
+- Variar los datos, el contexto o las restricciones de cada pregunta. Repetir una pregunta literalmente solo cuando sea necesario para verificar la corrección de un error anterior.
+- Evaluar cómo el estudiante interpreta los requisitos, justifica sus decisiones, prueba casos límite y diagnostica fallos. Registrar los temas a reforzar con evidencia y una próxima comprobación. Un resultado de retención no revoca automáticamente una aprobación histórica.
+- Aumentar gradualmente la dificultad mediante requisitos nuevos y problemas que exijan decidir y justificar una estrategia autónoma. Cuando los prerrequisitos estén aprobados, proponer miniproyectos de Ingeniería de Datos, como validar un lote de registros y generar un reporte de rechazos con pruebas reproducibles.
 
 ## Semáforo y evaluación
 
