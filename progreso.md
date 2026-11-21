@@ -89,3 +89,12 @@ La auditoría del commit [`28fc6124`](https://github.com/victorvasquezcode/entre
 | 2026-11-21 | Práctica | Pendiente | Inspección de `practica.py` en `28fc6124`. Falta la implementación, las pruebas y el razonamiento. |
 | 2026-11-21 | Desafío y mutación | Bloqueados | Inspección de ambos archivos en `28fc6124`. Contienen descripciones. Se requiere aprobar la práctica para habilitar el desafío. |
 | 2026-11-21 | Evaluación conceptual | Pendiente | Falta un veredicto para el concepto del Día 018. El repaso acreditó conocimientos previos. |
+
+### Evaluación de la práctica — 21 de noviembre de 2026
+
+- **Veredicto:** Práctica requiere corrección. Concepto inicial aprobado por inspección de la explicación entregada en conversación. Se conserva el repaso aprobado.
+- **Intento:** [`8d063842`](https://github.com/victorvasquezcode/entrenamiento-programacion/commit/8d06384278d5d138844965f10f06457da5828b12).
+- **Ejecución directa:** Python 3.12.14, con `01_logica` en la ruta de importación. Pasaron los 12 casos funcionales y las dos comprobaciones de inmutabilidad. Una subclase simple de `str` con código `" ab12 "` y cantidad `"3"` devolvió `None`. El enunciado pide que el código sea `str` y reserva la exigencia de tipo exacto para el diccionario y la cadena de cantidad. El código `"ß"` se normalizó a `"SS"`, conforme al orden fijado. Cantidades booleanas y con dígitos no ASCII se rechazaron. Una cadena de 5000 ceros fue rechazada por el conversor del Día 017 con el límite de Python, comportamiento heredado de la dependencia exigida.
+- **Inspección:** Orden de validación, conservación de cero, reutilización y construcción de un diccionario nuevo correctos. El script de pruebas imprime el resultado y no falla por sí mismo cuando un caso devuelve un resultado incorrecto. La ejecución del mentor añadió aserciones a los indicadores del script.
+- **Rúbrica:** Corrección 20/25, pruebas 17/20, diseño 18/20, razonamiento 15/15, autonomía 10/10, rendimiento 10/10. Total 90/100. El incumplimiento de tipo bloquea el avance.
+- **Próxima acción:** Aceptar una subclase simple de `str` para el código cuando el resultado normalizado cumpla el contrato. Agregar el caso de regresión y reevaluar la práctica.
