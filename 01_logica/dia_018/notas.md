@@ -1,6 +1,6 @@
 # Día 018 — Errores de validación con contexto
 
-**Tema propuesto para la sesión.** Las notas del Día 017 anuncian un concepto nuevo sin especificar cuál.
+**Borrador histórico.** Esta propuesta surgió después del Día 017. Sus preguntas, contratos y pruebas se conservan como antecedente. El único contrato vigente está en [enunciado.md](enunciado.md) y el resultado del repaso se consulta en [progreso](../../progreso.md#día-018). Estas notas se finalizarán cuando se aprueben todas las etapas.
 
 ## Repaso activo
 
@@ -27,4 +27,6 @@ Prueba un lote válido, una lista vacía y un lote en el que la segunda operaci�
 
 Conserva el contrato del desafío y añade `stock_maximo` al resultado, incluyendo el stock inicial. Prueba que una salida seguida de una entrada que no supere el stock de partida conserva ese máximo y que un error intermedio sigue indicando la posición correcta.
 
-**Estado:** ejercicios listos para resolver. Evaluación pendiente.
+**Estado histórico de la propuesta:** ejercicios preparados y evaluación pendiente en el momento de redactar el borrador.
+
+En el [estado anterior de mentoría](https://github.com/victorvasquezcode/entrenamiento-programacion/blob/28fc6124fcea83b980b16c5898af56a8c6cdc73b/memoria/estado_actual.md), `procesar_registros` figuraba como nombre tentativo de un desafío bloqueado.
