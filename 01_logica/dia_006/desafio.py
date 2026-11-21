@@ -33,4 +33,3 @@ for venta in lista_ventas:
         contador_dias += 1    
 print(f"\nLista de ventas registradas: {lista_ventas}")
 print(f"\nTotal vendido: {total_vendido}\nPromedio diario: {promedio}\nMayor venta: {mayor}\nDía con mayor venta: {dia_mayor}\nDías superiores al promedio: {contador_dias}")
-lista_ventas[20]

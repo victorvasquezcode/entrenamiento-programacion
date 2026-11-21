@@ -22,11 +22,13 @@ Cada sesión de entrenamiento incluye:
 
 ## 📚 Progreso
 
-| Día | Tema | Estado |
-|---|---|---|
-| 001 | Pensamiento algorítmico | 🟢 Dominado |
-| 002 | Operadores y expresiones lógicas | 🟢 Dominado |
-| 003 | Condicionales y control de flujo | 🔴 Pendiente |
+El bloque de lógica reúne material de los días 001 a 018. Los días 001–017 se
+revisaron en la auditoría técnica. El Día 018 está preparado para la siguiente
+sesión, con contratos y casos de prueba en sus notas.
+
+- [Registro de sesiones](progreso.md)
+- [Errores y aprendizajes](errores.md)
+- [Día 018 — Errores de validación con contexto](01_logica/dia_018/notas.md)
 
 ## 🛠️ Tecnologías
 

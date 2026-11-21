@@ -18,7 +18,7 @@ def validar_codigo(codigo):
         return codigo_limpio
 
 def convertir_entero(valor):
-    if type(valor) is bool or type(valor) is float:
+    if type(valor) not in (int, str):
         return None
     try:
         convertidor_entero = int(valor)
@@ -30,7 +30,7 @@ def procesar_transacciones(transacciones):
     saldos = {}
     rechazados = 0
     for transaccion in transacciones:
-        if len(transaccion) != 3:
+        if not isinstance(transaccion, (list, tuple)) or len(transaccion) != 3:
             rechazados += 1
             continue
         codigo_validado = validar_codigo(transaccion[0])

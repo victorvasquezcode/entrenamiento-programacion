@@ -7,23 +7,27 @@ movimientos = [
     ["XY03", "DEVOLUCION", 1]
 ]
 def validar_codigo(codigo : str):
+    if not isinstance(codigo, str):
+        return None
     codigo_limpio = codigo.strip().upper()
     if len(codigo_limpio) == 4 and codigo_limpio[:2].isalpha() and codigo_limpio[2:].isdigit():
         return codigo_limpio
     else:
         return None
 def calcular_movimiento(tipo : str, unidades : int):
+    if not isinstance(tipo, str):
+        return None
     normalizar_tipo = tipo.strip().upper()
-    if normalizar_tipo == "VENTA" and isinstance(unidades,int)  and unidades > 0:
+    if normalizar_tipo == "VENTA" and type(unidades) is int  and unidades > 0:
         return unidades
-    elif normalizar_tipo == "DEVOLUCION" and isinstance(unidades,int)  and unidades > 0:
+    elif normalizar_tipo == "DEVOLUCION" and type(unidades) is int  and unidades > 0:
         return -unidades
     else:
         return None
 def consolidar_movimientos(movimientos):
     mov={}
     for movimiento in movimientos:
-        if len(movimiento) != 3:
+        if not isinstance(movimiento, (list, tuple)) or len(movimiento) != 3:
             continue
         codigo_validado = validar_codigo(movimiento[0])
         movimiento_validado = calcular_movimiento(movimiento[1],movimiento[2])

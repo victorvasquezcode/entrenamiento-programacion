@@ -1,5 +1,7 @@
 #Persistencia y actualización de inventario
 import math
+
+from escritura_segura import escribir_texto_seguro
 def cargar_inventario(ruta):
     inventario_cargado = {}
     try:
@@ -36,14 +38,14 @@ def cargar_inventario(ruta):
                     "stock" : convertir_stock,
                     "precio": convertir_precio
                 }
-    except OSError:
+    except (OSError, UnicodeError):
         return None
     return inventario_cargado
 def actualizar_stock(inventario,codigo,cantidad,operacion):
     if type(operacion) is not str:
         return False
     normalizar_operacion = operacion.strip().lower()
-    if codigo not in inventario:
+    if not isinstance(inventario, dict) or not isinstance(codigo, str) or codigo not in inventario:
         return False
     if type(cantidad) is not int:
         return False
@@ -59,20 +61,20 @@ def actualizar_stock(inventario,codigo,cantidad,operacion):
         return True
     else:
         return False
-def guardar_inventario(ruta,inventario):
-    try:
-        with open(ruta,"w", encoding="utf-8") as archivo:
-            inventario_ordenado = sorted(inventario)
-            for codigo in inventario_ordenado:
-                archivo.write(f"{codigo};{inventario[codigo]['nombre']};{inventario[codigo]['stock']};{inventario[codigo]['precio']:.2f}\n")
-            return True
-    except OSError:
-        return False
-        
-inventario_cargado = cargar_inventario("inventario.txt")
-prueba_1 = actualizar_stock(inventario_cargado,"P001",5,"entrada")
-prueba_2 = actualizar_stock(inventario_cargado,"P002",8,"salida")
-prueba_3 = actualizar_stock(inventario_cargado,"P003",10,"salida")
-prueba_4 = actualizar_stock(inventario_cargado,"P003","5","entrada")
-prueba_5 = actualizar_stock(inventario_cargado,"P999","5","entrada")
-guardado = guardar_inventario("inventario.txt",inventario_cargado)
+def guardar_inventario(ruta, inventario):
+    lineas = []
+    for codigo in sorted(inventario):
+        producto = inventario[codigo]
+        nombre = producto["nombre"]
+        if any(separador in campo for campo in (codigo, nombre) for separador in (";", "\n", "\r")):
+            return False
+        lineas.append(f"{codigo};{nombre};{producto['stock']};{producto['precio']:.2f}\n")
+    return escribir_texto_seguro(ruta, lineas)
+
+
+if __name__ == "__main__":
+    inventario_cargado = cargar_inventario("inventario.txt")
+    if inventario_cargado is None:
+        print("No se pudo cargar el inventario.")
+    else:
+        print("Inventario cargado. Llama a actualizar_stock con los movimientos que quieras aplicar.")

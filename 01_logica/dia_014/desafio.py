@@ -1,4 +1,4 @@
-import math
+import sys
 def transformar_ventas(ventas):
     productos = {}
     if not type(ventas) is list:
@@ -21,7 +21,7 @@ def transformar_ventas(ventas):
             return None
         if not type(precio) is float and not type(precio) is int:
             return None
-        if not math.isfinite(precio) or not precio >= 0:
+        if not 0 <= precio <= sys.float_info.max:
             return None
     if not ventas:
         return productos
@@ -30,10 +30,17 @@ def transformar_ventas(ventas):
         cantidad = registro['cantidad']
         precio = registro['precio']
         normalizar_nombre = nombre.strip()
-        importe_total = cantidad * precio
+        try:
+            importe_total = cantidad * precio
+        except OverflowError:
+            return None
+        if not 0 <= importe_total <= sys.float_info.max:
+            return None
         if normalizar_nombre in productos:
             productos[normalizar_nombre]['cantidad'] += cantidad
             productos[normalizar_nombre]['total'] += importe_total
+            if productos[normalizar_nombre]['total'] > sys.float_info.max:
+                return None
         else:
             productos[normalizar_nombre] = {
                 "cantidad": cantidad,

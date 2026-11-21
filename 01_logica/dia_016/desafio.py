@@ -1,4 +1,4 @@
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, DecimalException, InvalidOperation
 def validar_cantidad(cantidad):
     if type(cantidad) is int and cantidad > 0:
         return True
@@ -21,7 +21,12 @@ def calcular_importe(cantidad, precio):
     precio_decimal = convertir_precio(precio)
     if precio_decimal is None:
         return None
-    total = cantidad * precio_decimal
+    try:
+        total = cantidad * precio_decimal
+    except DecimalException:
+        return None
+    if not total.is_finite():
+        return None
     return total
 def normalizar_producto(producto):
     if type(producto) is str:
@@ -61,7 +66,12 @@ def resumir_ventas_monetarios(ventas):
         importe = venta["importe"]
         if producto in resumen_ventas:
             resumen_ventas[producto]['cantidad'] += cantidad
-            resumen_ventas[producto]['total'] += importe
+            try:
+                resumen_ventas[producto]['total'] += importe
+            except DecimalException:
+                return None
+            if not resumen_ventas[producto]['total'].is_finite():
+                return None
         else:
             resumen_ventas[producto] ={
                 "cantidad": cantidad,
@@ -70,7 +80,12 @@ def resumir_ventas_monetarios(ventas):
     for clave, datos in resumen_ventas.items():
         cantidad = datos['cantidad']
         total = datos['total']
-        promedio = total / cantidad
+        try:
+            promedio = total / cantidad
+        except DecimalException:
+            return None
+        if not promedio.is_finite():
+            return None
         datos['precio_promedio'] = promedio
     return resumen_ventas
 from copy import deepcopy

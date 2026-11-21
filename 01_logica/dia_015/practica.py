@@ -1,4 +1,4 @@
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, DecimalException, InvalidOperation
 def calcular_importe(cantidad, precio_unitario):
     if not type(cantidad) is int:
         return None
@@ -14,7 +14,12 @@ def calcular_importe(cantidad, precio_unitario):
         return None
     if precio_decimal < 0:
         return None
-    resultado = cantidad * precio_decimal
+    try:
+        resultado = cantidad * precio_decimal
+    except DecimalException:
+        return None
+    if not resultado.is_finite():
+        return None
     return resultado
 #1. Precio válido: 3 × "19.90"
 assert calcular_importe(3, "19.90") == Decimal("59.70")

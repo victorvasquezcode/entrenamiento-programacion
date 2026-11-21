@@ -1,3 +1,8 @@
+import math
+
+from escritura_segura import escribir_texto_seguro
+
+
 ventas = {
     "Teclado": [45.5, 30.0],
     "Mouse": [25.0, 25.0, 25.0],
@@ -19,7 +24,7 @@ def validar_ventas(ventas):
         if not type(ventas[venta]) is list:
             continue
         for importe in ventas[venta]:
-            if (type(importe) is int or type(importe) is float) and importe > 0:
+            if type(importe) in (int, float) and 0 < importe < math.inf:
                 importes_validos.append(importe)
         if normalizar_venta in ventas_validas:
             ventas_validas[normalizar_venta] += importes_validos
@@ -42,23 +47,19 @@ def calcular_resumen(ventas_validas):
         }
     return resumen_ventas  
 def guardar_reporte(ruta, resumen):
+    separador = "-" * 30 + "\n"
+    lineas = ["REPORTE DE VENTAS\n", separador]
     total = 0
-    try:
-        with open(ruta,"w",encoding="utf-8") as archivo:
-            archivo.write("REPORTE DE VENTAS\n")
-            archivo.write("-" * 30)
-            archivo.write("\n")
-            resumen_ordenado = sorted(resumen)
-            for res in resumen_ordenado:
-                archivo.write(f"{res} | Cantidad: {resumen[res]["cantidad"]} | Total: S/ {resumen[res]["total"]:.2f} | Promedio: S/ {resumen[res]["promedio"]:.2f}\n")
-                total += resumen[res]["total"]
-            archivo.write("-" * 30)
-            archivo.write("\n")
-            archivo.write(f"TOTAL GENERAL: S/ {total:.2f}")
-        return True
-    except OSError:
-        return False
-resultado = validar_ventas(ventas)
-resumen_ventas = calcular_resumen(resultado)
-respuesta = guardar_reporte("reporte_ventas.txt",resumen_ventas)
-print(respuesta)
+    for producto in sorted(resumen):
+        datos = resumen[producto]
+        lineas.append(
+            f"{producto} | Cantidad: {datos['cantidad']} | "
+            f"Total: S/ {datos['total']:.2f} | Promedio: S/ {datos['promedio']:.2f}\n"
+        )
+        total += datos["total"]
+    lineas.extend([separador, f"TOTAL GENERAL: S/ {total:.2f}"])
+    return escribir_texto_seguro(ruta, lineas)
+
+
+if __name__ == "__main__":
+    print(guardar_reporte("reporte_ventas.txt", calcular_resumen(validar_ventas(ventas))))

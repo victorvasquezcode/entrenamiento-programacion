@@ -1,3 +1,6 @@
+from escritura_segura import escribir_texto_seguro
+
+
 nombres = [
     " ana ",
     "LUIS",
@@ -16,19 +19,18 @@ def guardar_nombre(ruta, nombres):
     for nombre in nombres:
         if type(nombre) is str:
             normalizar_nombre = nombre.strip().title()
-            if not normalizar_nombre:
+            if not normalizar_nombre or "\n" in normalizar_nombre or "\r" in normalizar_nombre:
                 rechazados += 1
             else:
                 lista_nombres.append(normalizar_nombre)
                 guardados += 1
         else:
             rechazados += 1
-    try:
-         with open(ruta,"w",encoding="utf-8") as archivo:
-            for lista in lista_nombres:
-                archivo.write(f"{lista}\n")
-    except OSError:
+    lineas = (f"{nombre}\n" for nombre in lista_nombres)
+    if not escribir_texto_seguro(ruta, lineas):
         return None
     return guardados, rechazados
-guardados, rechazados = guardar_nombre("nombres.txt",nombres)
-print(guardados, rechazados)
+
+
+if __name__ == "__main__":
+    print(guardar_nombre("nombres.txt", nombres))

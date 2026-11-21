@@ -1,4 +1,4 @@
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, DecimalException, InvalidOperation
 def resumir_ventas_monetarias(ventas):
     resumen_ventas = {}
     if not type(ventas) is list:
@@ -37,10 +37,20 @@ def resumir_ventas_monetarias(ventas):
         precio = registro['precio']
         normalizar_nombre = producto.strip()
         precios_decimal = Decimal(precio)
-        total = cantidad * precios_decimal
+        try:
+            total = cantidad * precios_decimal
+        except DecimalException:
+            return None
+        if not total.is_finite():
+            return None
         if normalizar_nombre in resumen_ventas:
             resumen_ventas[normalizar_nombre]['cantidad'] += cantidad
-            resumen_ventas[normalizar_nombre]['total'] += total
+            try:
+                resumen_ventas[normalizar_nombre]['total'] += total
+            except DecimalException:
+                return None
+            if not resumen_ventas[normalizar_nombre]['total'].is_finite():
+                return None
         else:
             resumen_ventas[normalizar_nombre] = {
                 "cantidad": cantidad,
@@ -49,7 +59,12 @@ def resumir_ventas_monetarias(ventas):
     for clave, datos in resumen_ventas.items():
         cantidad = datos['cantidad']
         total = datos['total']
-        promedio = total / cantidad
+        try:
+            promedio = total / cantidad
+        except DecimalException:
+            return None
+        if not promedio.is_finite():
+            return None
         datos['precio_promedio'] = promedio
     return resumen_ventas
 #1. Promedio de un registro

@@ -9,6 +9,8 @@ registros = [
     ["TEMP04", -60]
 ]
 def validar_sensor(codigo):
+    if not isinstance(codigo, str):
+        return None
     codigo_limpio = codigo.strip().upper()
     if len(codigo_limpio) == 6 and codigo_limpio[:4].isalpha() and codigo_limpio[-2:].isdigit():
         return codigo_limpio
@@ -22,7 +24,7 @@ def validar_temperatura(temperatura):
 def agrupar_temperatura(registros):
     diccionario_registro = {}
     for registro in registros:
-        if len(registro) != 2:
+        if not isinstance(registro, (list, tuple)) or len(registro) != 2:
             continue
         sensor_validado = validar_sensor(registro[0])
         temperatura_validada = validar_temperatura(registro[1])

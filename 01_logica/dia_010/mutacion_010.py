@@ -20,7 +20,7 @@ def validar_empleado(codigo):
     return None
 
 def convertir_edad(valor):
-    if type(valor) is bool or type(valor) is float:
+    if type(valor) not in (int, str):
         return None
     try:
         convertir_entero = int(valor)
@@ -40,7 +40,7 @@ def convertir_salario(valor):
             return convertir_decimal
         else:
             return None
-    except(TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):
         return None
 
 def procesar_empleados(empleados):

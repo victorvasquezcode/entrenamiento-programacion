@@ -1,4 +1,4 @@
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, DecimalException, InvalidOperation
 def validar_cantidad(cantidad):
     if type(cantidad) is int and cantidad > 0:
         return True
@@ -21,7 +21,12 @@ def calcular_importe(cantidad, precio):
     precio_decimal = convertir_precio(precio)
     if precio_decimal is None:
         return None
-    total = cantidad * precio_decimal
+    try:
+        total = cantidad * precio_decimal
+    except DecimalException:
+        return None
+    if not total.is_finite():
+        return None
     return total
 
 assert validar_cantidad(3) is True

@@ -121,7 +121,7 @@ with tempfile.TemporaryDirectory() as carpeta:
     assert contenido == "INVENTARIO ORIGINAL\n"
     assert os.listdir(carpeta) == ["inventario.txt"]
     print("PRUEBA 5 SUPERADA")
-# PRUEBA 6: Fallo durante la escritura temporal
+# PRUEBA 6: Fallo al crear el archivo temporal
 with tempfile.TemporaryDirectory() as carpeta:
     ruta = os.path.join(carpeta, "inventario.txt")
     with open(ruta, "w", encoding="utf-8") as archivo:

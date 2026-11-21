@@ -50,3 +50,13 @@
 2. Explicar qué salió mal y cómo evitarlo.
 3. Crear un caso límite pequeño que demuestre la solución.
 4. Marcar para repaso futuro cualquier concepto que no pueda explicar.
+## Auditoría técnica — Días 006, 009, 010 y 012–016
+
+| Día | Fallo o límite observado | Cambio registrado |
+|---|---|---|
+| 006 | Un acceso sobrante al índice 20 interrumpía el desafío después del resumen. | El autor retiró el acceso. Se comprobaron 1, 4, 20 y 21 días. |
+| 009 | Registros sin estructura y campos no textuales provocaban excepciones. `True` se aceptaba como cantidad. | Se comprueban estructura y tipos antes de acceder a los campos. |
+| 010 | Un registro `None` interrumpía la consolidación. La conversión de enteros aceptaba bytes. | Se valida la estructura de cada registro y se limita la conversión a enteros y texto. |
+| 012 | Un fallo de escritura o cierre podía dejar el destino parcial o reemplazado. La demostración de inventario aplicaba movimientos al ejecutarse repetidamente. | Los tres guardados escriben en un temporal antes de sustituir el destino. La demostración carga el inventario sin aplicar movimientos implícitos. |
+| 013 | El nombre fijo del temporal podía sobrescribir o eliminar un archivo preexistente. | La práctica crea un temporal exclusivo. El desafío valida la serialización antes de escribir. |
+| 014–016 | Operaciones con valores extremos podían desbordar o producir un resultado no finito. | Se controlan desbordamientos y resultados no finitos en los cálculos auditados. |

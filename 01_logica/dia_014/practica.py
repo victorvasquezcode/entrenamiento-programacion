@@ -1,4 +1,4 @@
-import math
+import sys
 def aplicar_descuentos(productos, porcentaje):
     resultados = {}
     duplicados = set()
@@ -16,11 +16,11 @@ def aplicar_descuentos(productos, porcentaje):
             duplicados.add(normalizar_nombres)
         if type(precio) is not int and type(precio) is not float:
             return None
-        if not math.isfinite(precio) or not precio >= 0:
+        if not 0 <= precio <= sys.float_info.max:
             return None
     if type(porcentaje) is not int and type(porcentaje) is not float:
         return None
-    if not math.isfinite(porcentaje) or not 0 <= porcentaje <= 100:
+    if not 0 <= porcentaje <= 100:
         return None
     for nombre,precio in productos.items():
         normalizar_nombres = nombre.strip()

@@ -1,24 +1,29 @@
 import os
-def guardar_seguro(ruta,lineas):
-    if not type(lineas) is list:
+from pathlib import Path
+from tempfile import NamedTemporaryFile
+
+
+def guardar_seguro(ruta, lineas):
+    if type(lineas) is not list or any(type(linea) is not str for linea in lineas):
         return False
-    temporal = ruta + ".tmp"
-    for linea in lineas:
-        if not type(linea) is str:
-            return False
+
+    destino = Path(ruta).absolute()
+    temporal = None
     try:
-        with open(temporal, "w", encoding="utf-8") as archivo:
+        with NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=destino.parent, delete=False
+        ) as archivo:
+            temporal = archivo.name
             for linea in lineas:
-                    if not linea.endswith("\n"): 
-                        archivo.write(f"{linea}\n")
-                    else:
-                        archivo.write(f"{linea}")
-        os.replace(temporal, ruta)
+                archivo.write(linea if linea.endswith("\n") else linea + "\n")
+        os.replace(temporal, destino)
+        temporal = None
         return True
-    except OSError:
-        try:
-            if os.path.exists(temporal):
-                os.remove(temporal)
-        except OSError:
-            return False
+    except (OSError, UnicodeError):
         return False
+    finally:
+        if temporal is not None:
+            try:
+                os.unlink(temporal)
+            except OSError:
+                pass

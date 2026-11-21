@@ -50,7 +50,7 @@ def guardar_inventario_seguro(ruta, inventario):
             return None
         if precio < 0:
             return None
-        if not math.isfinite(precio):
+        if type(precio) is float and not math.isfinite(precio):
             return None
         for simbolo in (";","\n","\r"):
             if simbolo in normalizar_codigo or simbolo in normalizar_nombre:
@@ -59,6 +59,12 @@ def guardar_inventario_seguro(ruta, inventario):
             return None
         else:
             duplicados.add(normalizar_codigo)
+        try:
+            normalizar_codigo.encode("utf-8")
+            normalizar_nombre.encode("utf-8")
+            format(precio, ".2f")
+        except (UnicodeError, OverflowError):
+            return None
     temporal = None
     try:
         directorio = os.path.dirname(os.path.abspath(ruta))
@@ -78,8 +84,9 @@ def guardar_inventario_seguro(ruta, inventario):
                     f"{codigo.strip()};{nombre};{stock};{precio:.2f}\n"
                 )
         os.replace(temporal, ruta)
+        temporal = None
         return True
-    except OSError:
+    except (OSError, UnicodeError, OverflowError, ValueError):
         return False
     finally:
         if temporal is not None:
