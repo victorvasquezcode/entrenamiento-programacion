@@ -3,8 +3,14 @@ from dia_018.practica import validar_registro
 
 class RegistroDict(dict):
     pass
+class CodigoEspecial(str):
+    pass
 
 casos = [
+    (
+    {"codigo": CodigoEspecial(" ab12 "), "cantidad": "3"},
+    {"codigo": "AB12", "cantidad": 3}
+    ),
     ({"codigo": "A1", "cantidad": "5"},
      {"codigo": "A1", "cantidad": 5}),
 
@@ -51,7 +57,7 @@ for numero, (entrada, esperado) in enumerate(casos, start = 1):
     if not correcto:
         print(f" Esperado: {esperado!r}")
         print(f" Obtenido: {obtenido!r}")
-print(f"\nResultado funcional: {aprobados}/12")
+print(f"\nResultado funcional: {aprobados}/{len(casos)}")
 
 original = {"codigo": " ab12 ","cantidad":" 003 "}
 copia = deepcopy(original)
@@ -79,3 +85,6 @@ print(
     "Inmutabilidad inválida:",
     "PASS" if inmutable_invalido else "FAIL"
 )
+
+if aprobados != len(casos) or not inmutable_valido or not inmutable_invalido:
+    raise SystemExit(1)

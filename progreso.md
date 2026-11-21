@@ -31,7 +31,7 @@ Las notas enlazadas conservan las evaluaciones históricas. A partir del Día 01
 | 015 | Precisión numérica y cálculos monetarios | [Notas de la sesión](01_logica/dia_015/notas.md) |
 | 016 | Modularización y reutilización de funciones | [Notas de la sesión](01_logica/dia_016/notas.md) |
 | 017 | Excepciones, validación estricta y procesamiento de inventario | [Notas de la sesión](01_logica/dia_017/notas.md) |
-| 018 | Validación estricta de registros | [Práctica pendiente](01_logica/dia_018/enunciado.md) · [Borrador histórico](01_logica/dia_018/notas.md) |
+| 018 | Validación estricta de registros | [Práctica](01_logica/dia_018/enunciado.md) · [Borrador histórico](01_logica/dia_018/notas.md) |
 
 ## Verificación técnica reciente
 
@@ -98,3 +98,13 @@ La auditoría del commit [`28fc6124`](https://github.com/victorvasquezcode/entre
 - **Inspección:** Orden de validación, conservación de cero, reutilización y construcción de un diccionario nuevo correctos. El script de pruebas imprime el resultado y no falla por sí mismo cuando un caso devuelve un resultado incorrecto. La ejecución del mentor añadió aserciones a los indicadores del script.
 - **Rúbrica:** Corrección 20/25, pruebas 17/20, diseño 18/20, razonamiento 15/15, autonomía 10/10, rendimiento 10/10. Total 90/100. El incumplimiento de tipo bloquea el avance.
 - **Próxima acción:** Aceptar una subclase simple de `str` para el código cuando el resultado normalizado cumpla el contrato. Agregar el caso de regresión y reevaluar la práctica.
+
+### Reevaluación de la práctica del Día 018
+
+- **Fecha:** 2026-11-21.
+- **Veredicto:** Práctica aprobada. Continúan vigentes las aprobaciones del concepto inicial y del repaso. Día 018 en AMARILLO.
+- **Intento:** [`2e0d1ca`](https://github.com/victorvasquezcode/entrenamiento-programacion/commit/2e0d1ca39bb9bc423eb856bc38ce888d720f2123).
+- **Ejecución directa:** Python 3.12.14 con `01_logica` en la ruta de importación. La suite del autor pasó 13/13 casos funcionales, incluida la regresión con una subclase de `str`, y 2/2 comprobaciones de inmutabilidad. Pasaron cinco casos complementarios sobre subclases, cero, cantidad booleana, dígitos no ASCII y normalización Unicode. Al restaurar temporalmente la validación anterior en una copia, la regresión falló y el script salió con código 1.
+- **Inspección:** El uso de `isinstance(codigo, str)` resuelve el incumplimiento anterior. Se mantiene el diccionario exacto, el orden de validación y la delegación de cantidad, con `is None` para preservar el cero. La explicación del estudiante distingue correctamente ambos criterios de tipo.
+- **Rúbrica:** Corrección 25/25, pruebas 20/20, diseño 18/20, razonamiento 15/15, autonomía 10/10 y rendimiento 10/10. Total 98/100. La deducción de diseño corresponde a formato y espaciado inconsistentes en el código y las pruebas.
+- **Próxima acción:** Presentar el desafío autónomo del Día 018. La mutación, la evaluación conceptual final y el Día 019 quedan pendientes.

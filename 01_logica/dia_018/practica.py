@@ -6,7 +6,7 @@ def validar_registro(registro):
     if set(registro.keys()) != claves_validas:
         return None
     codigo = registro['codigo']
-    if type(codigo) is not str:
+    if not isinstance(codigo, str):
         return None
     valor_normalizado = codigo.strip().upper()
     if not valor_normalizado:
