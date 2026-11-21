@@ -60,3 +60,9 @@
 | 012 | Un fallo de escritura o cierre podía dejar el destino parcial o reemplazado. La demostración de inventario aplicaba movimientos al ejecutarse repetidamente. | Los tres guardados escriben en un temporal antes de sustituir el destino. La demostración carga el inventario sin aplicar movimientos implícitos. |
 | 013 | El nombre fijo del temporal podía sobrescribir o eliminar un archivo preexistente. | La práctica crea un temporal exclusivo. El desafío valida la serialización antes de escribir. |
 | 014–016 | Operaciones con valores extremos podían desbordar o producir un resultado no finito. | Se controlan desbordamientos y resultados no finitos en los cálculos auditados. |
+
+## Repaso espaciado
+
+Al registrar un error recurrente, anotar el requisito omitido, el caso que lo revela, la regla preventiva, la evaluación de origen y la próxima fecha de repaso. Registrar aquí solo patrones transferibles y enlazar la evaluación en [progreso.md](progreso.md).
+
+Programar controles 1, 3, 7 y 14 días después de la corrección inicial. Al abrir una sesión, tomar primero los controles vencidos y resolverlos de memoria. Si falla un control, documentar el nuevo intento y reiniciar el intervalo en 1 día. Al superar el último control, pasar el tema al repaso periódico. Los registros históricos sin fecha se pueden incorporar a partir de su próximo control efectivo.

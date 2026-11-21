@@ -8,11 +8,12 @@ Construir fundamentos sólidos de programación mediante práctica deliberada, r
 
 ## 🧠 Metodología
 
-Cada sesión de entrenamiento incluye:
+Cada sesión comienza con repaso activo de temas verdes y se organiza en bloques de 50 minutos con descansos de 10. Cada día incluye:
 
 1. **Concepto técnico:** Comprender los fundamentos.
 2. **Ejercicio práctico:** Aplicar lo aprendido.
 3. **Desafío autónomo:** Resolver problemas sin depender de soluciones externas.
+4. **Mutación:** Adaptar la solución a un requisito nuevo y justificar las decisiones.
 
 ### Sistema de progresión
 
@@ -24,11 +25,13 @@ Cada sesión de entrenamiento incluye:
 
 El bloque de lógica reúne material de los días 001 a 018. Los días 001–017 se
 revisaron en la auditoría técnica. El Día 018 está preparado para la siguiente
-sesión, con contratos y casos de prueba en sus notas.
+sesión, con el repaso ya aprobado y la práctica pendiente.
 
 - [Registro de sesiones](progreso.md)
 - [Errores y aprendizajes](errores.md)
-- [Día 018 — Errores de validación con contexto](01_logica/dia_018/notas.md)
+- [Reglas de mentoría](INSTRUCCIONES_MENTOR.md)
+- [Punto de reanudación](memoria/estado_actual.md)
+- [Día 018 — Validación estricta de registros](01_logica/dia_018/enunciado.md)
 
 ## 🛠️ Tecnologías
 
